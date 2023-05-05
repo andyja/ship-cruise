@@ -16,7 +16,7 @@
 <body>
     <div class="header">
         <div class="header-column">
-            <form>
+            <form class="set-itinerary">
                 <label>Add Ports</label><br></br>
                 <input type="text" id="newPortName" placeholder="....type a port name here"><br></br>
                 <button type="button" class="btn" id="addPort">add</button>
@@ -45,6 +45,8 @@
     <script src="src/Port.js"></script>
     <script src="src/Controller.js"></script>
 <script>
+
+
     const maxPorts = 3;
 
     const itinerary = new Itinerary([]);
@@ -61,9 +63,8 @@
             listIsAdded = true;
         }
         const li = document.createElement("li");
-        li.textContent = `Port: ${port}`;
+        li.textContent = `Port: ${port.toUpperCase()}`;
         ul.appendChild(li);
-
     }
     
     addPortButton.addEventListener("click", function(event) {
@@ -72,9 +73,10 @@
         if (newPort.value) {
             const port = new Port(newPort.value);
             itinerary.ports.push(port);
-            headsUpBoard.innerHTML += `${port.name}`;
+            const delimiter = itinerary.ports.length === maxPorts ? "." : ", ";
+            headsUpBoard.innerHTML += `${port.name.toUpperCase()}${delimiter}`;
             showUserPorts(newPort.value);
-            newPort.value = "";  
+            newPort.value = "";
          } else {
             alert("Please enter a port name and press add");
         }
