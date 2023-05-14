@@ -4,6 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="images/ship.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
@@ -53,9 +54,11 @@
     const addPortButton = document.querySelector("#addPort");
     let listIsAdded = false;
 
-    function showUserPorts(port) {
+
+function showUserPorts(port) {
         const portInstructions = document.querySelector("#port-instructions");
         const portList = document.querySelector("#port-list");
+
         const ul = document.createElement("ul");
         portInstructions.textContent = `Please enter ${maxPorts - itinerary.ports.length}, more ports`;
         if (itinerary.ports.length) {
@@ -68,8 +71,9 @@
     }
     
     addPortButton.addEventListener("click", function(event) {
-        const newPort = document.querySelector("#newPortName");
         const headsUpBoard = document.querySelector("#headsUpBoard");
+        const newPort = document.querySelector("#newPortName");
+        
         if (newPort.value) {
             const port = new Port(newPort.value);
             itinerary.ports.push(port);
@@ -98,6 +102,23 @@
     }
     event.preventDefault();
     }, false);
+
+// The following is to make the sail btn also the "done" btn
+//     const sailButton = document.querySelector("#sailbutton");
+// sailButton.addEventListener("click", function(event) {
+//   if (itinerary.ports.length < maxPorts) {
+//     alert(`${maxPorts - itinerary.ports.length} additional ports are required`);
+//   } else {
+//     const ship = new Ship(itinerary);
+//     const controller = new Controller(ship);
+//     const addPortButton = document.querySelector("#addPort");
+//     controller.renderPorts(itinerary.ports);
+//     controller.renderShip();
+//     controller.setSail();
+//     sailButton.disabled = true;
+//   }
+//   event.preventDefault();
+// }, false);
 
     const reloadPageButton = document.querySelector("#reloadPage");
     reloadPageButton.addEventListener("click", () => { location.reload(); })
